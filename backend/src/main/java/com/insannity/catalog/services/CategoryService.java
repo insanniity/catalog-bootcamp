@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.insannity.catalog.dto.CategoryDTO;
 import com.insannity.catalog.entities.Category;
 import com.insannity.catalog.repositories.CategoryRepository;
+import com.insannity.catalog.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class CategoryService {
@@ -43,6 +44,18 @@ public class CategoryService {
 		
 		return new CategoryDTO(entity);
 		
+	}
+	
+	@Transactional
+	public CategoryDTO update(Long id, CategoryDTO dto) {
+		try{
+			Category entity = repository.getOne(id);		
+			entity.setName(dto.getName());
+			entity = repository.save(entity);
+			return new CategoryDTO(entity);
+		}catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id nao encontrado.");
+		}		
 	}
 	
 	
