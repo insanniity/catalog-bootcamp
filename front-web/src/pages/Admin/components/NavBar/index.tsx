@@ -4,9 +4,9 @@ import './styles.scss';
 const Navbar = () =>(
     <nav className="admin-nav-container">
         <ul>
-            <li><a href="#">Meus Produtos</a></li>
-            <li><a href="#">Minhas categorias</a></li>
-            <li><a href="#">Meus Usuários</a></li>
+            <li><a href="Link" className="admin-nav-item active">Meus Produtos</a></li>
+            <li><a href="Link" className="admin-nav-item">Minhas categorias</a></li>
+            <li><a href="Link" className="admin-nav-item">Meus Usuários</a></li>
         </ul>
     </nav>
 );
