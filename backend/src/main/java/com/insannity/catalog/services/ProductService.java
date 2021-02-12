@@ -1,5 +1,6 @@
 package com.insannity.catalog.services;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -13,9 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.insannity.catalog.dto.CategoryDTO;
 import com.insannity.catalog.dto.ProductDTO;
+import com.insannity.catalog.dto.UriDTO;
 import com.insannity.catalog.entities.Category;
 import com.insannity.catalog.entities.Product;
 import com.insannity.catalog.repositories.CategoryRepository;
@@ -31,6 +34,9 @@ public class ProductService {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private S3Service s3Service;
 	
 	@Transactional(readOnly = true)
 	public Page<ProductDTO> findAllPaged(Long categoryId, String name, PageRequest pageRequest){
@@ -94,6 +100,11 @@ public class ProductService {
 			throw new DataBaseException("Violação de integridade.");
 		}
 		
+	}
+
+	public UriDTO uploadFile(MultipartFile file) {
+		URL url = s3Service.uploadFile(file);
+		return new UriDTO(url.toString());
 	}
 	
 	
