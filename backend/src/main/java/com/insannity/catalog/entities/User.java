@@ -1,6 +1,6 @@
 package com.insannity.catalog.entities;
 
-import java.io.Serializable;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tbl_user")
-public class User implements UserDetails, Serializable{	
+public class User implements UserDetails{	
 	
 	private static final long serialVersionUID = 1L;
 	
