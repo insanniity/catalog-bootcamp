@@ -7,6 +7,7 @@ import Catalog from './pages/Catalog';
 import ProductDetails from './pages/Catalog/components/ProductDetails';
 import Home from './pages/Home';
 import history from './core/utils/history';
+import { isAuthenticated } from 'core/utils/auth';
 
 const Routes = () => (
     <Router history={history}>
@@ -23,7 +24,7 @@ const Routes = () => (
             </Route>
             <Redirect from="/admin/auth" to="/admin/auth/login" exact/>
             <Route path="/admin/auth">
-                <Auth />
+                {isAuthenticated() ? <Redirect from="/admin/auth/login" to="/admin/products" exact/> : <Auth />}                
             </Route>
             <Redirect from="/admin" to="/admin/products" exact/>
             <Route path="/admin">
