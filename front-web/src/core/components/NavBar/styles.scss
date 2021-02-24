@@ -13,23 +13,41 @@
 
 .main-menu{
     display: flex;
-    font-size: 18px;
-    width: 380px;
-    justify-content: space-between;
+      
+    justify-content: center;  
+    
+  
+    li{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+}
 
-    a{
-        font-style: normal;
-        color: rgba(255, 255, 255, 0.5);
+.nav-rigth{
+    padding-right: 40px;
+}
 
-        &.active{
-            font-weight: bold;
-            color: rgba(255, 255, 255, 1);
-        }
+.nav-link{
+    font-size: 18px; 
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.5);
 
-        &:hover{
-            color: rgba(255, 255, 255, 1);
-        }
-
+    &.active{
+        font-weight: bold;
+        color: rgba(255, 255, 255, 1);
     }
 
+    &:hover{
+        color: rgba(255, 255, 255, 1);
+    }
+
+}
+
+.dp-menu{    
+    color: rgba(255, 255, 255, 1);
+
+    &:hover{        
+        color: rgba(255, 255, 255, 1);
+    }
 }

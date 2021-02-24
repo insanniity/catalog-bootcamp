@@ -22,9 +22,9 @@ const Routes = () => (
             <Route path="/products/:productId">
                 <ProductDetails />
             </Route>
-            <Redirect from="/admin/auth" to="/admin/auth/login" exact/>
-            <Route path="/admin/auth">
-                {isAuthenticated() ? <Redirect from="/admin/auth/login" to="/admin/products" exact/> : <Auth />}                
+            <Redirect from="/auth" to="/auth/login" exact/>
+            <Route path="/auth">
+                {isAuthenticated() ? <Redirect from="/auth/login" to="/admin/products" exact/> : <Auth />}                
             </Route>
             <Redirect from="/admin" to="/admin/products" exact/>
             <Route path="/admin">
