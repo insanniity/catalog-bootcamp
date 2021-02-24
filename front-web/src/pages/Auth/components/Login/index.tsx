@@ -1,26 +1,42 @@
 import ButtonIcon from 'core/components/ButtonIcon';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import AuthCard from '../Card';
 import './styles.scss';
 import { useForm } from "react-hook-form";
+import { makeLogin } from 'core/utils/request';
+import { saveSessionData } from 'core/utils/auth';
 
 type FormData ={
-    email:string;
+    username:string;
     password:string;
 }
 
 const Login = () => {
     const { register, handleSubmit } = useForm<FormData>();
+    const [hasError, setHasError] = useState(false);
+    const history = useHistory();
+
     const onSubmit = (data:FormData) =>{
-        console.log(data);
+        makeLogin(data)
+        .then(response=>{
+            setHasError(false);
+            saveSessionData(response.data);
+            history.push('/admin');
+        })
+        .catch(() => {setHasError(true)});
     }
 
     return (
         <AuthCard title="Login">
+            {hasError && (
+                <div className="alert alert-danger fade show mt-5">
+                    Usuário ou senha inválido.
+                </div>
+            )}
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                <input type="email" required className="form-control input-base margin-botton-30" placeholder="Email" name="email" ref={register} value="maria@gmail.com"/>
-                <input type="password" required className="form-control input-base" placeholder="Senha" name="password" ref={register} value="123456"/>
+                <input type="email"  className="form-control input-base margin-botton-30" placeholder="Email" name="username" ref={register({required:true})} value="maria@gmail.com"/>
+                <input type="password"  className="form-control input-base" placeholder="Senha" name="password" ref={register({required:true})} value="123456"/>
                 <Link to="/admin/auth/recover" className="login-link-recover">Esqueci a senha!</Link>
                 <div className="button-login-form">
                     <ButtonIcon text="Logar"/>  
