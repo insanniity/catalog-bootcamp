@@ -1,5 +1,5 @@
-import { makeRequest } from 'core/utils/request';
 import React, { useState } from 'react';
+import { makePrivateRequest } from 'core/utils/request';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
 
@@ -29,7 +29,7 @@ const Form = () => {
             imgUrl: 'https://compass-ssl.xbox.com/assets/83/53/83534a33-0998-43dc-915a-4ec0a686d679.jpg',
             categories: [{id: formData.category }]
         }
-        makeRequest({url: '/products', method: 'POST', data: payload});
+        makePrivateRequest({url: '/products', method: 'POST', data: payload});
     }
 
     return(
