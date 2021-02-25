@@ -1,23 +1,43 @@
-import React from 'react';
+import Pagination from 'core/components/Pagination';
+import { ProductsResponse } from 'core/types/product';
+import { makeRequest } from 'core/utils/request';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '../Card';
 
 
+
+
 const List = () =>{
+    const [producResponse, setProductResponse] = useState<ProductsResponse>();
+    // eslint-disable-next-line
+    const [isLoading, setIsLoading] = useState(false);
+    const [activePage, setActivePage] = useState(0);
     const history = useHistory();
+
     const handleCreate = () => {
         history.push('/admin/products/create');
     }
+
+    useEffect(()=>{
+        const params ={
+            page:activePage,
+            linesPerPage: 5,
+            direction: 'DESC',
+            orderBy: 'id',
+        }
+        setIsLoading(true);
+        makeRequest({url:'/products', params})        
+        .then(response => setProductResponse(response.data))
+        .finally(()=> {setIsLoading(false)});
+    }, [activePage] );
 
     return(
         <div className="admin-products-list">
             <button className="btn btn-primary btn-lg" onClick={handleCreate}>ADICIONAR</button>
             <div className="admin-list-container">                
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {producResponse?.content.map(product=>(<Card product={product} key={product.id} />))}  
+                {producResponse && (<Pagination totalPages={producResponse.totalPages} activePage={activePage} onChange={page => setActivePage(page)}/>)}              
             </div>
         </div>
     )

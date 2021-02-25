@@ -21,9 +21,7 @@ const Pagination = ({totalPages, activePage, onChange}:Props) => {
                 <div className={`pagination-item ${item === activePage ? 'active' : ' '}`} key={item} onClick={() => onChange(item)}>
                 {item +1 }
                 </div> 
-            ))}
-
-                         
+            ))}                         
             <ArrowIcon className={`pagination-next ${nextClass}`} onClick={()=> onChange(activePage + 1)} />
         </div>
     );

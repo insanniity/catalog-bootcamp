@@ -1,27 +1,34 @@
 import ProductPrice from 'core/components/ProductPrice';
+import { Product } from 'core/types/product';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
-const Card = () =>{
-    
+type Props = {
+    product:Product;
+}
 
+
+
+const Card = ({product}:Props) =>{  
     return(
         <div className="card-base product-admin-card">            
             <div className="row">
                 <div className="col-2 text-center border-right py-3 px-1">
-                    <img src="https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/3-big.jpg" alt="" className="product-card-admin-image" />
+                    <img src={product.imgUrl} alt={product.name} className="product-card-admin-image" />
                 </div>
                 <div className="col-7 py-3">
-                    <h3 className="product-admin-card-title">Computador Desktop - Intel Core i7</h3>
-                    <ProductPrice price={40.50} />
+                    <h3 className="product-admin-card-title">{product.name}</h3>
+                    <ProductPrice price={product.price} />
                     <div className="mt-3">
-                        <span className="badge badge-pill badge-secondary mr-1">Cat 1</span>
-                        <span className="badge badge-pill badge-secondary mr-1">Cat 2</span>
+                    {product.categories.map(category => (
+                        <span className="badge badge-pill badge-secondary mr-1" key={category.id}>{category.name}</span>
+                    ))}                     
                     </div>
                 </div>
                 <div className="col-3 pt-3 pr-5">
-                    <div className="btn btn-outline-secondary btn-block border-radius-10 mb-4 btn-edit">EDITAR</div>
-                    <div className="btn btn-outline-danger btn-block border-radius-10">APAGAR</div>
+                    <Link to={`/admin/products/${product.id}`} className="btn btn-outline-secondary btn-block border-radius-10 mb-4 btn-edit">EDITAR</Link>
+                    <Link to={`/admin/products/${product.id}`} className="btn btn-outline-danger btn-block border-radius-10">APAGAR</Link>
                 </div>
             </div>            
         </div>
