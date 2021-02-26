@@ -7,8 +7,10 @@ import { toast } from 'react-toastify';
 import Select from 'react-select';
 import { useHistory, useParams } from 'react-router-dom';
 import { Category } from 'core/types/product';
+import PriceField from './PriceField';
+import ImageUpload from '../ImageUpload';
 
-type FormState ={
+export type FormState ={
     name: string;
     price: string;    
     description: string;
@@ -19,7 +21,6 @@ type FormState ={
 type ParamsType = {
     productId: string;
 }
-
 
 const Form = () => {
     const {register, handleSubmit, errors, setValue, control } = useForm<FormState>(); 
@@ -49,7 +50,8 @@ const Form = () => {
         .finally(() => setIsLoadingCategories(false));
     },[]);
 
-    const onSubmit = (data:FormState) => {        
+    const onSubmit = (data:FormState) => {
+        data.price = data.price.replace(".","").replace(",", ".");        
         makePrivateRequest({url: isEditing ? `/products/${productId}` : '/products', method: isEditing ? 'PUT' : 'POST', data})
             .then(() => {
                 toast.success('Produto salvo com sucesso!');
@@ -92,6 +94,7 @@ const Form = () => {
                         <div className="form-group mb-5">
                             <Controller
                                 as={Select} 
+                                defaultValue=""                                
                                 name="categories"
                                 rules={{ required:true }}
                                 control={control}
@@ -110,15 +113,7 @@ const Form = () => {
                             )}
                         </div>
                         <div className="form-group mb-5">
-                            <input 
-                                type="number"                                  
-                                name="price" 
-                                className="form-control input-base"                           
-                                placeholder="Valor do produto" 
-                                ref={register({
-                                    required: "Campo obrigatório",                                   
-                                })}
-                        />
+                            <PriceField control={control}/>
                             {errors.price && (
                                 <div className="invalid-feedback d-block">
                                     {errors.price.message}
@@ -126,18 +121,7 @@ const Form = () => {
                             )}
                         </div>
                         <div className="form-group mb-5">
-                            <input 
-                                type="text" 
-                                ref={register({required: "Campo obrigatório"})}
-                                name="imgUrl" 
-                                className="form-control input-base"                             
-                                placeholder="Imagem" 
-                            />
-                            {errors.imgUrl && (
-                                <div className="invalid-feedback d-block">
-                                    {errors.imgUrl.message}
-                                </div>
-                            )}
+                            <ImageUpload />
                         </div>
                     </div>
                     <div className="col-6">
