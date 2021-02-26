@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import './styles.scss';
-import { getAccessTokenDecoded, logout } from 'core/utils/auth';
+import { getAccessTokenDecoded, isAuthenticated, logout } from 'core/utils/auth';
 
 const Navbar = () => {
     const [currentUser, setCurrentUser] = useState('');
@@ -33,7 +33,7 @@ const Navbar = () => {
                 <li>
                     <NavLink to="/products" className="nav-link">CATÁLOGO</NavLink>
                 </li>
-                {currentUser && (
+                {isAuthenticated() && (
                     <li>
                         <NavLink to="/admin" className="nav-link">ADMIN</NavLink>
                     </li>
@@ -41,7 +41,7 @@ const Navbar = () => {
             </ul>
         </div>
         <div className="col-3 text-right nav-rigth">
-            {currentUser && (
+            {isAuthenticated() && (
                 <Dropdown>
                     <Dropdown.Toggle variant="none" className="dp-menu">
                         {currentUser}
@@ -52,7 +52,7 @@ const Navbar = () => {
                 </Dropdown>
             )} 
             
-            {!currentUser && (
+            {!isAuthenticated() && (
                 <Link to="/auth/login" className="nav-link active">Login</Link>
             )} 
         </div>
