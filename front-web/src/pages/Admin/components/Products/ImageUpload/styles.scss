@@ -1,0 +1,45 @@
+.upload-button-container{
+    label{
+        background: #9E9E9E;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 19px;
+        text-align: center;
+        letter-spacing: -0.015em;
+        color: #FFFFFF;
+        padding: 10px 35px;
+        cursor: pointer;
+    }    
+}
+
+
+.help-txt{
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #407BFF;
+}
+
+.upload-placeholder{
+    .upload-progress-container{
+        position:absolute;
+        left: 27px;
+        top: 175px; 
+        background: #E1E1E1;
+        border-radius: 100px;        
+        width: 176px;
+        height: 10px; 
+    }
+    .upload-progress{        
+        height: 10px;
+        background: #407BFF;
+        border-radius: 100px;
+    }
+
+    .uploaded-image{
+        width: 200px;
+        height: 200px;
+    }
+}

@@ -29,6 +29,8 @@ const Form = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [isLoadinCategories, setIsLoadingCategories] = useState(false);
     const isEditing = productId !== 'create';
+    const [uploadedImgUrl, setUploadedImgUrl] = useState('');
+    const [productImgUrl, setProductImgUrl] = useState('');
 
     useEffect(() => {       
         if(isEditing){
@@ -37,8 +39,8 @@ const Form = () => {
                 setValue('name', response.data.name);
                 setValue('price', response.data.price);
                 setValue('description', response.data.description);
-                setValue('imgUrl', response.data.imgUrl);
                 setValue('categories', response.data.categories)
+                setProductImgUrl(response.data.imgUrl)
             });
         }        
     }, [productId, isEditing, setValue]);
@@ -52,7 +54,12 @@ const Form = () => {
 
     const onSubmit = (data:FormState) => {
         data.price = data.price.replace(".","").replace(",", ".");        
-        makePrivateRequest({url: isEditing ? `/products/${productId}` : '/products', method: isEditing ? 'PUT' : 'POST', data})
+        const payload = {
+            ...data,
+            imgUrl: uploadedImgUrl
+        }
+        
+        makePrivateRequest({url: isEditing ? `/products/${productId}` : '/products', method: isEditing ? 'PUT' : 'POST', data:payload})
             .then(() => {
                 toast.success('Produto salvo com sucesso!');
                 histoty.push('/admin/products');
@@ -60,6 +67,10 @@ const Form = () => {
             .catch(() =>{
                 toast.error('Erro ao salvar produto!');
             });
+    }
+
+    const onUploadSuccess = (imgUrl:string) => {
+        setUploadedImgUrl(imgUrl);
     }
 
     return(
@@ -121,7 +132,7 @@ const Form = () => {
                             )}
                         </div>
                         <div className="form-group mb-5">
-                            <ImageUpload />
+                            <ImageUpload onUploadSuccess={onUploadSuccess} productImageUrl={productImgUrl}/>
                         </div>
                     </div>
                     <div className="col-6">
