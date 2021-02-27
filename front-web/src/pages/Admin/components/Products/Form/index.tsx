@@ -22,6 +22,10 @@ type ParamsType = {
     productId: string;
 }
 
+const formatPrice = (price : string) => {
+    return price.replace('.', '').replace(',', '.');
+}
+
 const Form = () => {
     const {register, handleSubmit, errors, setValue, control } = useForm<FormState>(); 
     const histoty = useHistory();
@@ -52,11 +56,11 @@ const Form = () => {
         .finally(() => setIsLoadingCategories(false));
     },[]);
 
-    const onSubmit = (data:FormState) => {
-        data.price = data.price.replace(".","").replace(",", ".");        
+    const onSubmit = (data:FormState) => {  
+        data.price = formatPrice(String(data.price));              
         const payload = {
             ...data,
-            imgUrl: uploadedImgUrl
+            imgUrl: uploadedImgUrl || productImgUrl
         }
         
         makePrivateRequest({url: isEditing ? `/products/${productId}` : '/products', method: isEditing ? 'PUT' : 'POST', data:payload})
