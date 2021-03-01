@@ -13,3 +13,26 @@
     justify-content: center;
     color:#FFF;
 }
+
+.default-btn{
+    display: flex;
+}
+
+@media(max-width:576px){
+    .default-btn{
+        max-width: 70vw;
+        height: 50px;
+        margin-bottom: 15px;
+        h5{
+            font-size: 1em;
+        }
+    }
+
+    .btn-icon{
+        height: 50px;
+    }
+
+    .btn-icon-content{
+        height: 50px;
+    }
+}

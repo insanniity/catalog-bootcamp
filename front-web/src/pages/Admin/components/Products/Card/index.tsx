@@ -14,11 +14,11 @@ type Props = {
 const Card = ({product, onRemove}:Props) =>{  
     return(
         <div className="card-base product-admin-card"> 
-            <div className="text-center border-right py-3 px-1">
+            <div className="text-center border-right py-3 px-1 border-img">
                 <img src={product.imgUrl} alt={product.name} className="product-card-admin-image" />
             </div>
-            <div className="col-7 py-3">
-                <h3 className="card-content product-admin-card-title">{product.name}</h3>
+            <div className="card-content">
+                <h3 className="product-admin-card-title">{product.name}</h3>
                 <ProductPrice price={product.price} />
                 <div className="mt-3">
                 {product.categories.map(category => (
@@ -26,9 +26,9 @@ const Card = ({product, onRemove}:Props) =>{
                 ))}                     
                 </div>
             </div>
-            <div className="col-3 pt-3 pr-5">
-                <Link to={`/admin/products/${product.id}`} className="btn btn-outline-secondary btn-block border-radius-10 mb-4 btn-edit">EDITAR</Link>
-                <button className="btn btn-outline-danger btn-block border-radius-10" onClick={() =>onRemove(product.id)}>APAGAR</button>
+            <div className="btn-container">
+                <Link to={`/admin/products/${product.id}`} className="btn btn-outline-secondary btn-block border-radius-10 mb-4 btn-edit btn-product">EDITAR</Link>
+                <button className="btn btn-outline-danger btn-block border-radius-10 btn-product" onClick={() =>onRemove(product.id)}>APAGAR</button>
             </div>   
         </div>
     )

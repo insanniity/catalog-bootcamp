@@ -28,7 +28,7 @@ const FiltersBar = ({name, handleChangeName, category , handleChangeCategory, cl
 
     return (
         <div className="card-base filters-search-container row">
-            <div className="col-5">
+            <div className="col-lg-5">
                 <div className="input-search">
                     <input 
                         type="text"
@@ -40,7 +40,7 @@ const FiltersBar = ({name, handleChangeName, category , handleChangeCategory, cl
                     <SearchIcon />
                 </div>
             </div>
-            <div className="col-5">
+            <div className="col-lg-5">
                 <Select                                                                      
                     name="categories"
                     key={`select-${category?.id}`}
@@ -56,7 +56,7 @@ const FiltersBar = ({name, handleChangeName, category , handleChangeCategory, cl
                     isClearable
                 />
             </div>
-            <div className="col-2">
+            <div className="col-lg-2">
                 <button className="btn btn-outline-secondary" onClick={clearFilters}> Limpar filtro </button>
             </div>
 

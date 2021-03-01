@@ -80,8 +80,8 @@ const Form = () => {
     return(
         <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm title={isEditing ? 'Editando o produto' : 'Cadastrar produto'}>
-                <div className="row">
-                    <div className="col-6">
+                <div className="product-form-container">
+                    <div className="col-lg-6">
                         <div className="form-group mb-5">                        
                             <input 
                                 type="text" 
@@ -139,7 +139,7 @@ const Form = () => {
                             <ImageUpload onUploadSuccess={onUploadSuccess} productImageUrl={productImgUrl}/>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-lg-6">
                         <textarea 
                             ref={register({required: "Campo obrigatório"})} 
                             className="form-control input-base"
