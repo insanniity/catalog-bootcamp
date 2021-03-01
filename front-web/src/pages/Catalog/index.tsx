@@ -52,11 +52,8 @@ const Catalog = () => {
 
     return (
         <div className="catalog-container">
-            <div className="row">
-                <div className="col-2">
-                    <h1 className="catalog-title">Catalogo de produtos</h1>
-                </div>
-                <div className="col-10">
+            <div className="filter-container">               
+                    <h1 className="catalog-title">Catalogo de produtos</h1>   
                     <FiltersBar 
                         name={name} 
                         category={category} 
@@ -64,7 +61,7 @@ const Catalog = () => {
                         handleChangeName={handleChangeName}
                         clearFilters={clearFilters}
                     />
-                </div>
+               
             </div>
             <div className="catalog-products">
                 {isLoading ? <ProductCardLoader /> : (

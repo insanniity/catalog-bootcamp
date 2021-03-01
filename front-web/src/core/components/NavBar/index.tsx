@@ -19,13 +19,13 @@ const Navbar = () => {
     }
 
     return (
-    <nav className="row bg-primary main-nav" >
-        <div className="col-3">
-            <Link to="/" className="nav-logo-text">
-                <h4>Catalog</h4>
-            </Link>
-        </div>
-        <div className="col-6">
+    <nav className="bg-primary main-nav" >
+        
+        <Link to="/" className="nav-logo-text">
+            <h4>Catalog</h4>
+        </Link>
+        
+        <div className="menu-container">
             <ul className="main-menu">
                 <li>
                     <NavLink to="/" exact className="nav-link">HOME</NavLink>
@@ -40,7 +40,7 @@ const Navbar = () => {
                 )}
             </ul>
         </div>
-        <div className="col-3 text-right nav-rigth">
+        <div className="text-right">
             {isAuthenticated() && (
                 <Dropdown>
                     <Dropdown.Toggle variant="none" className="dp-menu">

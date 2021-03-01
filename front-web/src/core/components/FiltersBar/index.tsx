@@ -27,7 +27,7 @@ const FiltersBar = ({name, handleChangeName, category , handleChangeCategory, cl
     },[]);    
 
     return (
-        <div className="card-base filters-container row">
+        <div className="card-base filters-search-container row">
             <div className="col-5">
                 <div className="input-search">
                     <input 
