@@ -279,9 +279,19 @@ const navBar = StyleSheet.create({
         textDecorationStyle: "solid",
 
     },
-
-
-
+    btnSair:{
+        width:60,
+        height: 30,
+        borderWidth: 1,
+        borderRadius:10,
+        borderColor: colors.white,
+        alignItems: "center",
+        justifyContent: "center",
+        marginRight: 20,
+    },
+    txtSair:{
+        color: colors.white,
+    },
 })
 
 const login = StyleSheet.create({

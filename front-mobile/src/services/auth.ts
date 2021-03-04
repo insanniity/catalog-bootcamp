@@ -35,10 +35,17 @@ async function setAsyncKeys(key:string, value:string){
 export async function isAuthenticated(){
     try{
         const token = await AsyncStorate.getItem("@token");
-
-        token ? console.log('Logado') : console.log("Deslogado");
+       
+        return token ? true : false;
 
     }catch(e){console.log(e)}
 }
 
 
+export async function doLogout(){
+    try{
+        AsyncStorate.removeItem("@token");
+    }catch(e){
+        console.log(e);
+    }
+}

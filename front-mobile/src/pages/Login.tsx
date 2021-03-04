@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import { theme, login, text } from '../styles';
 import eyeOpened from '../assets/images/eyes-opened.png';
 import eyeClosed from '../assets/images/eyes-closed.png';
 import arrow from '../assets/images/seta.png';
-import { authLogin, isAuthenticated } from '../services/auth';
+import { authLogin } from '../services/auth';
 
 const Login: React.FC = () => {
     const [hidePassword, setHidePassword] = useState(true);
@@ -12,12 +13,13 @@ const Login: React.FC = () => {
         username: "",
         password: "",
     });
-
-    useEffect(() => { isAuthenticated() }, []);
-
+    const navigation = useNavigation();
+    const [userFetchData, setUserFetchData] = useState({}); 
+    
     async function handleLogin(){
         const data = await authLogin(userInfo);
-        //console.log(data);
+        setUserFetchData(data);
+        navigation.navigate("Dashboard");
     }
 
     return (
