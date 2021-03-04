@@ -257,10 +257,10 @@ const navBar = StyleSheet.create({
     },
     options:{
         width: deviceWidth,
-        height:150,
+        height:160,
         backgroundColor: colors.primary,
         color: colors.white,
-        marginTop: 150,        
+        marginTop: 160,        
         padding: 20,
         justifyContent: "space-between",              
     },
@@ -284,5 +284,52 @@ const navBar = StyleSheet.create({
 
 })
 
+const login = StyleSheet.create({
+    card:{
+        width:"100%",
+        height: "100%",
+        backgroundColor: colors.white,
+        borderRadius:20,
+        alignItems: "center",
+        shadowColor: colors.black,
+        shadowOffset:{
+            width:0,
+            height:2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        justifyContent:"center",
+        
+    },
+    form:{
+        marginVertical: 10,
+    },
+    passwordContainer:{
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 25,
+    },
+    textInput:{
+        width: 290,
+        height: 50,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        borderRadius: 10,
+        padding: 10,
+    },
+    toggle:{
+        marginLeft: -40,
+    },
+    title:{
+        fontSize: 30,
+        fontWeight: "400",
+        textTransform: "uppercase",
+        color: colors.darkGray,
+        marginBottom: 50,
+    },
+    eyes:{},
+    buttonTextContainer:{},
 
-export {colors, theme, text, navBar};
+})
+
+export {colors, theme, text, navBar, login};

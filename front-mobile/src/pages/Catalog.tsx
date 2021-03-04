@@ -12,7 +12,7 @@ const Catalog:React.FC = () => {
 
     async function fillProducts(){
         setLoad(true);
-        const res = await api.get(`/products`);
+        const res = await api.get(`products`);
         setProducts(res.data.content);
         setLoad(false);
     }
