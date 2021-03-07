@@ -239,7 +239,9 @@ const theme = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius:10,
         borderColor: colors.lightGray,
-    }
+    },
+
+
 
 })
 
@@ -375,4 +377,62 @@ const tabBar = StyleSheet.create({
 
 })
 
-export {colors, theme, text, navBar, login, tabBar};
+const admin = StyleSheet.create({
+    container:{        
+        padding: 10,
+        alignItems:"center",
+    },
+    addButton:{
+        width: "100%",
+        height: 50,
+        backgroundColor: colors.primary,
+        margin: 10,
+        borderRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    textAddButton:{
+        color: colors.white,
+        textTransform: "uppercase",
+        fontWeight: "bold",
+    },
+    buttonContainer:{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-around",
+    },
+    btnExcluir:{
+        width: "48%",
+        height: 40,
+        borderWidth: 1,
+        borderColor: colors.red,
+        marginVertical: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+    },
+    textBtnExcluir:{
+        textTransform:"uppercase",
+        fontWeight: "bold",
+        color:colors.red,
+    },
+    btnEditar:{
+        width: "48%",
+        height: 40,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        marginVertical: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+    },
+    textBtnEditar:{
+        textTransform:"uppercase",
+        fontWeight: "bold",
+        color:colors.mediumGray,
+    }
+
+})
+
+
+export {colors, theme, text, navBar, login, tabBar, admin};

@@ -51,7 +51,7 @@ const NavBar: React.FC =() =>{
                             </TouchableNativeFeedback>
 
                             <TouchableNativeFeedback style={navBar.option} onPress={() => navigate("Admin")}>
-                                <Text style={[navBar.textOption, route.name === "Adm" ? navBar.textActive : null]}>ADM</Text>                        
+                                <Text style={[navBar.textOption, route.name === "Admin" ? navBar.textActive : null]}>Admin</Text>                        
                             </TouchableNativeFeedback>
                             { autehnticated && (
                                 <TouchableNativeFeedback onPress={()=> logout()} style={navBar.btnSair}>

@@ -7,3 +7,8 @@ export const api = axios.create({
 
 
 export const TOKEN =  "Basic Y2F0YWxvZzpjYXRhbG9nMTIz";
+
+export function getProducts() {
+    const res = api.get(`products`);
+    return res;
+}

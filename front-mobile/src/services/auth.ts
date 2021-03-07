@@ -1,6 +1,6 @@
 import {api, TOKEN } from "./index";
 import queryString from 'query-string';
-import AsyncStorate from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface AuthProps{
     username:string;
@@ -26,7 +26,7 @@ export async function authLogin (userInfo:AuthProps){
 
 async function setAsyncKeys(key:string, value:string){
     try{
-        await AsyncStorate.setItem(key, value);
+        await AsyncStorage.setItem(key, value);
     }catch(e){
         console.log(e);
     }
@@ -34,7 +34,7 @@ async function setAsyncKeys(key:string, value:string){
 
 export async function isAuthenticated(){
     try{
-        const token = await AsyncStorate.getItem("@token");
+        const token = await AsyncStorage.getItem("@token");
        
         return token ? true : false;
 
@@ -44,7 +44,7 @@ export async function isAuthenticated(){
 
 export async function doLogout(){
     try{
-        AsyncStorate.removeItem("@token");
+        AsyncStorage.removeItem("@token");
     }catch(e){
         console.log(e);
     }
