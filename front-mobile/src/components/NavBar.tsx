@@ -37,14 +37,7 @@ const NavBar: React.FC =() =>{
     }
 
     return(
-        <>
-            { autehnticated ? (
-                <TouchableNativeFeedback onPress={()=> logout()} style={navBar.btnSair}>
-                    <Text style={navBar.txtSair}>Sair</Text>
-                </TouchableNativeFeedback>
-                
-                ) : (
-
+        <View style={navBar.container}>  
                 <TouchableNativeFeedback  onPress={()=> setShow(!show)}>
                     <Image source={menu}  style={navBar.drawer}/>
                     {show ? (
@@ -60,14 +53,16 @@ const NavBar: React.FC =() =>{
                             <TouchableNativeFeedback style={navBar.option} onPress={() => navigate("Admin")}>
                                 <Text style={[navBar.textOption, route.name === "Adm" ? navBar.textActive : null]}>ADM</Text>                        
                             </TouchableNativeFeedback>
+                            { autehnticated && (
+                                <TouchableNativeFeedback onPress={()=> logout()} style={navBar.btnSair}>
+                                    <Text style={navBar.txtSair}>Sair</Text>
+                                </TouchableNativeFeedback>                                
+                            ) }
 
                         </View>
                     ):null}            
-                </TouchableNativeFeedback>
-                    
-            )}
-
-        </>
+                </TouchableNativeFeedback>   
+        </View>
     );
 };
 

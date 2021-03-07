@@ -3,7 +3,7 @@ import { color } from "react-native-reanimated";
 
 const colors = {
     white: "#FFFFFF",
-    lightGray: "#F2F2F2",
+    lightGray: "#F5F5F5",
     mediumGray:"#9e9e9e",
     darkGray:"#263238",
     black:"#000000",
@@ -246,6 +246,9 @@ const theme = StyleSheet.create({
 const deviceWidth = Dimensions.get('window').width;
 
 const navBar = StyleSheet.create({
+    container:{
+        flexDirection: "row",        
+    },
     leftText:{
         fontSize: 16,
         marginLeft: 20,
@@ -254,13 +257,14 @@ const navBar = StyleSheet.create({
     },
     drawer:{
         marginRight: 20,
+        marginTop:5,        
     },
     options:{
         width: deviceWidth,
-        height:160,
+        height:200,
         backgroundColor: colors.primary,
         color: colors.white,
-        marginTop: 160,        
+        marginTop: 200,        
         padding: 20,
         justifyContent: "space-between",              
     },
@@ -287,7 +291,7 @@ const navBar = StyleSheet.create({
         borderColor: colors.white,
         alignItems: "center",
         justifyContent: "center",
-        marginRight: 20,
+        marginTop: 10,
     },
     txtSair:{
         color: colors.white,
@@ -342,4 +346,33 @@ const login = StyleSheet.create({
 
 })
 
-export {colors, theme, text, navBar, login};
+const tabBar = StyleSheet.create({
+    container:{
+        width: deviceWidth,
+        height: 80,
+        backgroundColor: colors.white,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-around",
+    },
+
+    pill:{
+       padding: 15,
+       backgroundColor: colors.lightGray,
+       borderRadius:30,
+    },
+    pillActive:{
+        backgroundColor:colors.bluePill,
+    },
+
+    pillText:{
+        fontWeight: "bold",
+        color: colors.mediumGray,
+    },
+    pillTextActive:{
+        color:colors.primary,
+    },
+
+})
+
+export {colors, theme, text, navBar, login, tabBar};
