@@ -246,6 +246,7 @@ const theme = StyleSheet.create({
 })
 
 const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
 
 const navBar = StyleSheet.create({
     container:{
@@ -430,9 +431,128 @@ const admin = StyleSheet.create({
         textTransform:"uppercase",
         fontWeight: "bold",
         color:colors.mediumGray,
+    },
+    btnSave:{
+        width: "48%",
+        height: 40,
+        borderWidth: 1,
+        backgroundColor: colors.primary,
+        marginVertical: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 10,
+    },
+    textBtnSave:{
+        textTransform:"uppercase",
+        fontWeight: "bold",
+        color:colors.white,
     }
 
 })
 
+const form = StyleSheet.create({
+    container:{
+        width: deviceWidth,
+        padding:20,
 
-export {colors, theme, text, navBar, login, tabBar, admin};
+    },
+    card:{
+        width: "100%",
+        height: "90%",
+        backgroundColor: colors.white,
+        borderRadius:20,
+        padding: 20,
+        shadowColor: colors.black,
+        shadowOffset:{
+            width:0,
+            height:2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        alignItems: "center",
+        justifyContent: "space-around",
+    },
+    modalContainer:{
+        width:deviceWidth,
+        height: deviceHeight,
+        backgroundColor: "#00000033",
+        alignItems: "center",
+        justifyContent: "center",
+
+    },
+    modalContent:{
+        width:300,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "50%",
+        backgroundColor: colors.white,
+        borderRadius: 20,
+        padding: 20,
+        shadowOffset:{
+            width:0,
+            height:2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        
+    }, 
+    modlaItem: {
+        width: "100%",
+        backgroundColor: colors.lightGray,
+        padding: 10,
+        marginVertical: 5,
+        borderRadius: 5,
+    },
+    input:{
+        width: "100%",
+        height: 50,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        borderRadius: 10,
+        padding: 10,
+        marginVertical:15,
+    },
+    textInput:{
+        width: "100%",
+        height:200,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        borderRadius:10,
+        padding: 10,
+        marginVertical: 10,
+        alignItems:"baseline",
+
+    },
+    selectInput:{
+        width: "100%",
+        height: 50,
+        borderWidth: 1,
+        borderColor: colors.mediumGray,
+        borderRadius: 10,
+        padding: 10,            
+        justifyContent: "center",          
+    },
+    btnUpload:{
+       width:"100%",
+       height: 40,
+       backgroundColor: colors.mediumGray,
+       borderRadius: 10,
+       alignItems: "center",
+       justifyContent: "center",  
+    },
+    txtUpload:{
+        color: colors.white,
+        textTransform: "uppercase",
+        fontWeight: "bold",
+    },
+    txtFileSize:{
+        color: colors.primary,
+        fontSize: 12,
+        fontWeight: "300",
+        marginVertical: 5,
+    },
+})
+
+
+export {colors, theme, text, navBar, login, tabBar, admin, form};

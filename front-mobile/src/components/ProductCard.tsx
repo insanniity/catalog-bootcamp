@@ -7,7 +7,7 @@ import {useNavigation} from "@react-navigation/native";
 interface ProductProps{
     id: Number;
     name: String;
-    imgUrl: ImageSourcePropType;
+    imgUrl: string;
     price: Number;
     role?: string;
 }
