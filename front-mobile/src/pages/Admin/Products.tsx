@@ -3,7 +3,7 @@ import {View, Text, ScrollView, TouchableOpacity, ActivityIndicator} from 'react
 import { admin, theme } from '../../styles';
 
 import {SearchInput, ProductCard} from '../../components';
-import { getProducts } from '../../services';
+import { deleteProduct, getProducts } from '../../services';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 interface ProductProps{
@@ -23,6 +23,12 @@ const Products: React.FC<ProductProps> = (props) => {
         setLoad(false);
     }
 
+    async function handleDelete(id:number) {
+        setLoad(true);
+        const res = await deleteProduct(id);
+        fillProducts();
+    }
+
     useEffect(() => {
         fillProducts();
     }, [])
@@ -34,7 +40,10 @@ const Products: React.FC<ProductProps> = (props) => {
             <TouchableOpacity style={admin.addButton}><Text style={admin.textAddButton} onPress={() =>  setScreen("newProduct")}>Adicionar</Text></TouchableOpacity>
             <SearchInput placeholder="Nome do produto" search={search} setSearch={setSearch}/>
             {   load ? (<ActivityIndicator size="large"/>) :
-                (data.map(product =>(<ProductCard {...product} key={product.id} role="admin" />)))
+                (data.map((product) => {
+                    const {id} = product;
+                    return(<ProductCard {...product} key={id} role="admin" handleDelete={handleDelete} />)
+                }))
             }      
         </ScrollView>
     );
