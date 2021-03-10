@@ -43,7 +43,7 @@ const Products: React.FC<ProductProps> = (props) => {
 
     return(
         <ScrollView contentContainerStyle={admin.container}>
-            <TouchableOpacity style={admin.addButton}><Text style={admin.textAddButton} onPress={() =>  setScreen("newProduct")}>Adicionar</Text></TouchableOpacity>
+            <TouchableOpacity style={admin.addButton} onPress={() =>  setScreen("newProduct")}><Text style={admin.textAddButton}>Adicionar</Text></TouchableOpacity>
             <SearchInput placeholder="Nome do produto" search={search} setSearch={setSearch}/>
             {   load ? (<ActivityIndicator size="large"/>) :
                 (data.map((product) => {
