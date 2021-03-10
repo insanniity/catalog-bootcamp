@@ -37,3 +37,23 @@ export async function deleteProduct(id:number) {
     const atoken = await userToken();
     const res = api.delete(`products/${id}`,{headers:{ Authorization : `Bearer ${atoken}`,}});
 }
+
+export async function uploadImage(image:string) {
+    if(!image) return;
+
+    const authToken = await userToken();
+    let data = new FormData();
+    data.append("file",{
+        uri: image,
+        name:image,
+    })
+
+    const res = api.post(`products/image`, data, {
+        headers:{
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "multipart/form-data", 
+        }
+    })
+
+    return res;
+}
