@@ -8,19 +8,25 @@ import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 interface ProductProps{
     setScreen:Function;
+    setProductId: Function;
 }
 
 const Products: React.FC<ProductProps> = (props) => {
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(false);
-    const { setScreen } = props;
+    const { setScreen, setProductId} = props;
 
     async function fillProducts(){
         setLoad(true);
         const res = await getProducts();
         setProducts(res.data.content);
         setLoad(false);
+    }
+
+    function handleEdit(id:number){
+        setProductId(id);
+        setScreen("editProduct");
     }
 
     async function handleDelete(id:number) {
@@ -42,7 +48,7 @@ const Products: React.FC<ProductProps> = (props) => {
             {   load ? (<ActivityIndicator size="large"/>) :
                 (data.map((product) => {
                     const {id} = product;
-                    return(<ProductCard {...product} key={id} role="admin" handleDelete={handleDelete} />)
+                    return(<ProductCard {...product} key={id} role="admin" handleDelete={handleDelete} handleEdit={handleEdit} />)
                 }))
             }      
         </ScrollView>

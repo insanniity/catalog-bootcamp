@@ -10,8 +10,8 @@ import { authLogin, isAuthenticated } from '../services/auth';
 const Login: React.FC = () => {
     const [hidePassword, setHidePassword] = useState(true);
     const [userInfo, setUserInfo] = useState({
-        username: "",
-        password: "",
+        username: "maria@gmail.com",
+        password: "123456",
     });
     const navigation = useNavigation();
     const [userFetchData, setUserFetchData] = useState({});     

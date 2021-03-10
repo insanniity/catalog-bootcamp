@@ -57,3 +57,18 @@ export async function uploadImage(image:string) {
 
     return res;
 }
+
+export async function getProduct(id:number) {
+    const res = await api.get(`products/${id}`);
+    return res.data;
+}
+
+export async function updateProduct(data:object) {
+    const aToken = await userToken();
+    const res = await api.put(`products/${data.id}`, data, {
+        headers:{
+            Authorization: `Bearer ${aToken}`,
+        }
+    })
+    return res;
+}
